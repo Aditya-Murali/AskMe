@@ -1,15 +1,25 @@
-﻿@model AskMe.Models.ViewModels.AccountViewModels.LoginViewModel
+@model AskMe.Models.ViewModels.AccountViewModels.RegisterViewModel
 
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Register";
 }
 
 <div class="container">
   <div class="row">
-    <div class="col-md-6">
+    <div class="col">
         <section>
                 <form method="post">
                     <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FirstName"></label>
+                        <input asp-for="FirstName" class="form-control" placeholder="Enter First Name"/>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="LastName"></label>
+                        <input asp-for="LastName" class="form-control" placeholder="Enter Last Name"/>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
                     <div class="form-group">
                         <label asp-for="Email"></label>
                         <input asp-for="Email" class="form-control" placeholder="Enter email address"/>
@@ -21,14 +31,15 @@
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
+                        <label asp-for="ConfirmPassword" ></label>
+                        <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm password"/>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
                         <button type="submit" class="btn btn-red">Login</button>
                     </div>
                 </form>    
         <section>
-    </div>
-    <div class="col-md-6">
-      <h1>Askme</h1>
-      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
     </div>
   </div>
 </div>

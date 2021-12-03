@@ -1,4 +1,4 @@
-using FastPass.Models;
+using AskMe.Models;
 using Microsoft.EntityFrameworkCore;
 
 public class AskMeDbContext : DbContext

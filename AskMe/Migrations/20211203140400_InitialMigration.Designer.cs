@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AskMe.Migrations
 {
     [DbContext(typeof(AskMeDbContext))]
-    [Migration("20211201231030_InitialMigration")]
+    [Migration("20211203140400_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -22,7 +22,7 @@ namespace AskMe.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("FastPass.Models.Answer", b =>
+            modelBuilder.Entity("AskMe.Models.Answer", b =>
                 {
                     b.Property<int>("AId")
                         .ValueGeneratedOnAdd()
@@ -37,8 +37,9 @@ namespace AskMe.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("AId");
 
@@ -49,7 +50,7 @@ namespace AskMe.Migrations
                     b.ToTable("Answers");
                 });
 
-            modelBuilder.Entity("FastPass.Models.Question", b =>
+            modelBuilder.Entity("AskMe.Models.Question", b =>
                 {
                     b.Property<int>("QId")
                         .ValueGeneratedOnAdd()
@@ -61,8 +62,9 @@ namespace AskMe.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("QId");
 
@@ -71,24 +73,15 @@ namespace AskMe.Migrations
                     b.ToTable("Questions");
                 });
 
-            modelBuilder.Entity("FastPass.Models.User", b =>
+            modelBuilder.Entity("AskMe.Models.User", b =>
                 {
-                    b.Property<int>("UserId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"), 1L, 1);
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FirstName")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Phone")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
@@ -96,15 +89,15 @@ namespace AskMe.Migrations
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("FastPass.Models.Answer", b =>
+            modelBuilder.Entity("AskMe.Models.Answer", b =>
                 {
-                    b.HasOne("FastPass.Models.Question", "question")
+                    b.HasOne("AskMe.Models.Question", "question")
                         .WithMany()
                         .HasForeignKey("QId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("FastPass.Models.User", "user")
+                    b.HasOne("AskMe.Models.User", "user")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -115,9 +108,9 @@ namespace AskMe.Migrations
                     b.Navigation("user");
                 });
 
-            modelBuilder.Entity("FastPass.Models.Question", b =>
+            modelBuilder.Entity("AskMe.Models.Question", b =>
                 {
-                    b.HasOne("FastPass.Models.User", "user")
+                    b.HasOne("AskMe.Models.User", "user")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)

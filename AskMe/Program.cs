@@ -1,4 +1,6 @@
 using AskMe.Data;
+using AskMe.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 IConfiguration configuration = new ConfigurationBuilder()
@@ -14,6 +16,10 @@ builder. Services.AddDbContext<AskMeDbContext>(options =>
 
 builder. Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("AppDbContext")));
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
 
 var app = builder.Build();
 
