@@ -1,3 +1,4 @@
+using AskMe.Data;
 using AskMe.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,7 +15,9 @@ public class AskMeDbContext : DbContext
 
     public DbSet<Answer> Answers { get; set; }
 
-     protected override void OnModelCreating(ModelBuilder modelBuilder)
+    public DbSet<Category> Categories { get; set; }
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
@@ -22,5 +25,7 @@ public class AskMeDbContext : DbContext
             {
                 foreignKey.DeleteBehavior = DeleteBehavior.Restrict;
             }
-        }
+
+            modelBuilder.SeedCateogory();
+    }
 }

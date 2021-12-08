@@ -1,0 +1,32 @@
+﻿@model AskMe.Models.ViewModels.AnswerViewModels.CreateAnswerViewModel
+
+@{
+    ViewData["Title"] = "Answer a question";
+}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+        <section>
+                <form method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="Statement"></label>
+                        <input asp-for="Statement" class="form-control" placeholder="Enter First Name"/>
+                        <span asp-validation-for="Statement" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                         <input type="hidden" asp-for="QuestionId" />
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-red">Login</button>
+                    </div>
+                </form>    
+        <section>
+    </div>
+  </div>
+</div>
+
+ @section Scripts {
+        @await Html.PartialAsync("_ValidationScriptsPartial")
+    }

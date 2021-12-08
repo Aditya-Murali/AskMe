@@ -15,7 +15,7 @@ namespace AskMe.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Seed();
+            modelBuilder.SeedRole();
         }
     }
 }

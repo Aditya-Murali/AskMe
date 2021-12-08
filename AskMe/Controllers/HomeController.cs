@@ -22,12 +22,27 @@ namespace AskMe.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
             try
             {
-                LoginViewModel lvm = new LoginViewModel();
-                return View(lvm);
+                string currentUserId = await GetCurrentUserId();
+
+                if (currentUserId == null)
+                {
+                    return View(new LoginViewModel());
+                }
+
+                var user = await _userManager.FindByIdAsync(currentUserId);
+                var roles = await _userManager.GetRolesAsync(user);
+                var role = roles.FirstOrDefault();
+
+                if (role.Equals("Consumer"))
+                {
+                    return RedirectToAction("dashboard", "question");
+                }
+
+                return View(new LoginViewModel());
             }
             catch (Exception e)
             {
@@ -51,7 +66,7 @@ namespace AskMe.Controllers
 
                     if (role.Equals("Consumer"))
                     {
-                        return RedirectToAction("Success", "Home", new { act = "index", con = "home" });
+                        return RedirectToAction("dashboard", "question");
                     }
                 }
                 else
@@ -65,6 +80,24 @@ namespace AskMe.Controllers
             {
                 // Log and throw error
                 _logger.LogError(e, "Error while Login ");
+                throw e;
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Logout()
+        {
+            try
+            {
+                await _signInManager.SignOutAsync();
+                _logger.LogInformation("User logged out.");
+                return RedirectToAction("Index", "Home");
+            }
+            catch (Exception e)
+            {
+                // Log and throw error
+                _logger.LogError(e, "Error during logout");
                 throw e;
             }
         }
@@ -164,6 +197,13 @@ namespace AskMe.Controllers
                 _logger.LogError(e, "Error while adding errors");
                 throw e;
             }
+        }
+
+        //private method for getting the current user id string
+        private async Task<string> GetCurrentUserId()
+        {
+            ApplicationUser user = await _userManager.GetUserAsync(HttpContext.User);
+            return user?.Id;
         }
     }
 }

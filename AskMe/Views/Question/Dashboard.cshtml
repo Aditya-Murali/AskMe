@@ -1,0 +1,23 @@
+﻿@model AskMe.Models.ViewModels.QuestionViewModels.QuestionDashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container">
+    @if(Model.Questions.Count > 0)
+    {
+        foreach(var q in Model.Questions)
+        {
+           <div class="card">
+              <div class="card-body">
+                <h3>@q.QuestionStatement</h3>
+                <p>@q.AnswerStatement</p>
+                <p><b><span>Answers: </span>@q.AnswerCount</b></p>
+              </div>
+            </div> 
+        }
+    }
+</div>
+
+
