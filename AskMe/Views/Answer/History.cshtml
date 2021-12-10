@@ -1,0 +1,24 @@
+﻿@model AskMe.Models.ViewModels.AnswerViewModels.AnswerHistoryViewModel
+
+@{
+    ViewData["Title"] = "History";
+}
+
+<div class="container">
+    @if(Model.AnswerHistory.Count > 0)
+    {
+        foreach(var a in Model.AnswerHistory)
+        {
+           <div class="card">
+              <div class="card-body">
+                <h3>@a.QuestionStatement</h3>
+                <p>@a.AnswerStatement</p>
+              </div>
+              <a asp-action="Edit" asp-route-aid=@a.AId>Edit</a>
+              <a asp-action="Delete" asp-route-aid=@a.AId>Delete</a>
+            </div> 
+        }
+    }
+</div>
+
+

@@ -1,11 +1,10 @@
 ﻿@model AskMe.Models.ViewModels.QuestionViewModels.QuestionDashboardViewModel
 
 @{
-    ViewData["Title"] = "Dashboard";
+    ViewData["Title"] = "History";
 }
 
 <div class="container">
-    <a asp-action="Create">Ask a question</a>
     @if(Model.Questions.Count > 0)
     {
         foreach(var q in Model.Questions)
@@ -17,6 +16,7 @@
                 <p><b><span>Answers: </span>@q.AnswerCount</b></p>
               </div>
               <a asp-action="Details" asp-route-qid=@q.QId>Read more</a>
+              <a asp-action="Delete" asp-route-qid=@q.QId>Delete</a>
             </div> 
         }
     }

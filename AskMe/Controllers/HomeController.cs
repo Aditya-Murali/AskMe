@@ -29,24 +29,19 @@ namespace AskMe.Controllers
                 string currentUserId = await GetCurrentUserId();
 
                 if (currentUserId == null)
-                {
                     return View(new LoginViewModel());
-                }
 
                 var user = await _userManager.FindByIdAsync(currentUserId);
                 var roles = await _userManager.GetRolesAsync(user);
                 var role = roles.FirstOrDefault();
 
                 if (role.Equals("Consumer"))
-                {
                     return RedirectToAction("dashboard", "question");
-                }
 
                 return View(new LoginViewModel());
             }
             catch (Exception e)
             {
-                // Log and throw error
                 _logger.LogError(e, "Error while Login ");
                 throw e;
             }
@@ -65,20 +60,15 @@ namespace AskMe.Controllers
                     var role = roles.FirstOrDefault();
 
                     if (role.Equals("Consumer"))
-                    {
                         return RedirectToAction("dashboard", "question");
-                    }
                 }
                 else
-                {
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                }
                
                 return View(lvm);
             }
             catch (Exception e)
             {
-                // Log and throw error
                 _logger.LogError(e, "Error while Login ");
                 throw e;
             }
@@ -96,7 +86,6 @@ namespace AskMe.Controllers
             }
             catch (Exception e)
             {
-                // Log and throw error
                 _logger.LogError(e, "Error during logout");
                 throw e;
             }
@@ -112,7 +101,6 @@ namespace AskMe.Controllers
             }
             catch (Exception e)
             {
-                // Log and throw error
                 _logger.LogError(e, "Error while registering a new user");
                 throw e;
             }
@@ -193,7 +181,6 @@ namespace AskMe.Controllers
             }
             catch (Exception e)
             {
-                // Log and throw error
                 _logger.LogError(e, "Error while adding errors");
                 throw e;
             }

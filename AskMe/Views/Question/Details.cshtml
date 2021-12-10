@@ -1,0 +1,24 @@
+﻿@model AskMe.Models.ViewModels.QuestionViewModels.QuestionDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <h1>@Model.QuestionStatement</h1>
+     <a asp-action="Status" asp-controller="Answer" asp-route-qid=@Model.QId>Add/Edit Answer</a>
+    @if(Model.Ans.Count > 0)
+    {
+        foreach(var a in Model.Ans)
+        {
+           <div class="card">
+              <div class="card-body">
+                <p>@a.Statement</p>
+                <p><b><span>Author: </span>@a.user.FirstName</b></p>
+              </div>
+            </div> 
+        }
+    }
+</div>
+
+
