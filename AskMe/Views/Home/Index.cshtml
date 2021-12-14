@@ -1,34 +1,40 @@
 ﻿@model AskMe.Models.ViewModels.AccountViewModels.LoginViewModel
 
 @{
-    ViewData["Title"] = "Home Page";
+    Layout = "_HomeLayout";
+    ViewData["Title"] = "Sign in to AskMe";
 }
 
 <div class="container">
-  <div class="row">
+  <div class="row d-flex justify-content-center">
     <div class="col-md-6">
         <section>
+            <div class="text-center mt-5">
+                <img src="images/Logo.png" width="150" height="150" />
+                <h1 class="text-center">Sign in to <span class="text-primary">AskMe</span></h1>
+            </div>
+            <div class="login-box mt-2">
                 <form method="post">
                     <div asp-validation-summary="All" class="text-danger"></div>
                     <div class="form-group">
                         <label asp-for="Email"></label>
-                        <input asp-for="Email" class="form-control" placeholder="Enter email address"/>
+                        <input asp-for="Email" class="form-control rounded-0" placeholder="Enter email address"/>
                         <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <label asp-for="Password" ></label>
-                        <input asp-for="Password" class="form-control" placeholder="Enter password"/>
+                    <div class="form-group mt-3">
+                        <label asp-for="Password"></label>
+                        <input asp-for="Password" class="form-control rounded-0" placeholder="Enter password"/>
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-red">Login</button>
+                        <button type="submit" class="btn btn-primary mt-4 py-1 px-4 rounded-0">Login</button>
                     </div>
                 </form>    
-        <section>
-    </div>
-    <div class="col-md-6">
-      <h1>Askme</h1>
-      <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+            </div>
+            <div class="mt-4 login-box text-center">
+                <p>New to AskMe? <a asp-action="register">Create an account</a></p>
+            </div>
+        </section>
     </div>
   </div>
 </div>
