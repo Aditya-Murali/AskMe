@@ -5,16 +5,19 @@
 }
 
 <div class="container">
+    <a href="javascript:window.history.go(-1)" class="link-danger text-decoration-none py-2"><i class="fa fa-arrow-left"></i> Go Back</a>
+    <hr/>
     <h1>@Model.QuestionStatement</h1>
-     <a asp-action="Status" asp-controller="Answer" asp-route-qid=@Model.QId>Add/Edit Answer</a>
+     <a asp-action="Status" asp-controller="Answer" asp-route-qid=@Model.QId class="link-primary text-decoration-none"><i class="fa fa-edit"></i> Add/Edit Answer</a>
+     <hr />
     @if(Model.Ans.Count > 0)
     {
         foreach(var a in Model.Ans)
         {
-           <div class="card">
+           <div class="card q-card p-4">
               <div class="card-body">
                 <p>@a.Statement</p>
-                <p><b><span>Author: </span>@a.user.FirstName</b></p>
+                <p class="mt-2"><b><span>Author: </span>@a.user.FirstName</b></p>
               </div>
             </div> 
         }

@@ -5,18 +5,26 @@
 }
 
 <div class="container">
+    <a href="javascript:window.history.go(-1)" class="link-danger text-decoration-none py-2"><i class="fa fa-arrow-left"></i> Go Back</a>
+
     @if(Model.Questions.Count > 0)
     {
         foreach(var q in Model.Questions)
         {
-           <div class="card">
+           <div class="card q-card mt-3 p-4">
               <div class="card-body">
                 <h3>@q.QuestionStatement</h3>
-                <p>@q.AnswerStatement</p>
-                <p><b><span>Answers: </span>@q.AnswerCount</b></p>
+                <p class="my-2">Answers: @q.AnswerCount</p>
+                <small class="my-2">@q.AnswerStatement</small>
+                <hr>
+                <div class="my-2">
+                  @if(@q.AnswerCount != 0)
+                  {
+                       <a asp-action="Details" asp-route-qid=@q.QId class="link-primary text-decoration-none"><i class="fa fa-chevron-down"></i> Read more</a>
+                  }
+                   <a asp-action="Delete" asp-route-qid=@q.QId class="d-inline link-danger px-4 py-2 text-decoration-none"><i class="fa fa-trash"></i> Delete</a>
+               </div>
               </div>
-              <a asp-action="Details" asp-route-qid=@q.QId>Read more</a>
-              <a asp-action="Delete" asp-route-qid=@q.QId>Delete</a>
             </div> 
         }
     }
