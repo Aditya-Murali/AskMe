@@ -1,0 +1,57 @@
+@model AskMe.Models.ViewModels.AccountViewModels.RegisterViewModel
+
+@{
+    Layout = "_HomeLayout";
+    ViewData["Title"] = "Register";
+}
+
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+        <section>
+            <div class="text-center mt-5">
+                <img src="~/images/Logo.png" width="150" height="150" />
+                <h1 class="text-center">Join <span class="text-primary">AskMe</span></h1>
+            </div>
+            <div class="login-box mt-2">
+                <form method="post">
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FirstName"></label>
+                        <input asp-for="FirstName" class="form-control rounded-0" placeholder="Enter First Name"/>
+                        <span asp-validation-for="FirstName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label asp-for="LastName"></label>
+                        <input asp-for="LastName" class="form-control rounded-0" placeholder="Enter Last Name"/>
+                        <span asp-validation-for="LastName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label asp-for="Email"></label>
+                        <input asp-for="Email" class="form-control rounded-0" placeholder="Enter email address"/>
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-3">
+                        <label asp-for="Password" ></label>
+                        <input asp-for="Password" class="form-control rounded-0" placeholder="Enter password"/>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div> 
+                    <div class="form-group mt-3">
+                        <label asp-for="ConfirmPassword" ></label>
+                        <input asp-for="ConfirmPassword" class="form-control rounded-0" placeholder="Confirm password"/>
+                        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mt-4 d-flex justify-content-between">
+                        <button type="submit" class="btn btn-primary px-4 py-2 rounded-0">Register</button>
+                        <a href="javascript:window.history.go(-1)" class="link-danger text-decoration-none py-2"><i class="fa fa-arrow-left"></i> Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+  </div>
+</div>
+
+ @section Scripts {
+        @await Html.PartialAsync("_ValidationScriptsPartial")
+    }
