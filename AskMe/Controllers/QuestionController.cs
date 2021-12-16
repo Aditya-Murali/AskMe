@@ -22,9 +22,15 @@ namespace AskMe.Controllers
 
         [HttpGet]
         [Authorize(Roles = "Consumer")]
-        public IActionResult Dashboard()
+        public IActionResult Dashboard(int? id)
         {
-            var questions = _context.Questions.ToList();
+            List<Question> questions = new List<Question>();
+
+            if (id == null)
+                questions = _context.Questions.ToList();
+            else
+                questions = _context.Questions.Where( q => q.category.CId == id ).ToList();
+
             List<QuestionViewModel> _questions = new List<QuestionViewModel>();
             
             foreach(Question q in questions)
@@ -43,7 +49,8 @@ namespace AskMe.Controllers
 
             var qdvm = new QuestionDashboardViewModel
             {
-                Questions = _questions
+                Questions = _questions,
+                CategoryId = id
             };
 
             return View(qdvm);

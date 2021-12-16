@@ -2,15 +2,50 @@
 
 @{
     ViewData["Title"] = "Dashboard";
+
+    string? navAll, navHealth, navTech, navAuto, navArt, navEdu, navCareer, navPolitics;
+    navAll = navHealth = navTech = navAuto = navArt = navEdu = navCareer = navPolitics = null;
+
+    @if (Model.CategoryId == null)
+        navAll = "status-active";
+    else if(Model.CategoryId == 1)
+        navHealth = "status-active";
+    else if(Model.CategoryId == 2)
+        navTech = "status-active";
+    else if(Model.CategoryId == 3)
+        navAuto = "status-active";
+    else if(Model.CategoryId == 4)
+        navArt = "status-active";
+    else if(Model.CategoryId == 5)
+        navEdu = "status-active";
+    else if(Model.CategoryId == 6)
+        navCareer = "status-active";
+    else if(Model.CategoryId == 7)
+        navPolitics = "status-active";
 }
 
 <div class="container">
+    <h5 class="text-secondary">Dashboard</h5>
     <a asp-action="Create" class="link-primary text-decoration-none mt-2"><i class="fa fa-question-circle"></i> Ask a question</a>
+
+    <div class="card q-card my-4 p-4">
+        <div class="card-body">
+            <a class="link-secondary text-decoration-none d-inline px-4 py-2 mx-2 mb-3 @navAll" asp-action="Dashboard" asp-route-id="null">All</a>
+            <a class="link-secondary text-decoration-none d-inline px-4 py-2 mx-2 my-4 @navHealth" asp-action="Dashboard" asp-route-id="1">Health</a>
+            <a class="link-secondary text-decoration-none d-inline px-4 py-2 mx-2 my-4 @navTech" asp-action="Dashboard" asp-route-id="2">Technology</a>
+            <a class="link-secondary text-decoration-none d-inline px-4 py-2 mx-2 my-4 @navAuto" asp-action="Dashboard" asp-route-id="3">Automotive</a>
+            <a class="link-secondary text-decoration-none d-inline px-4 py-2 mx-2 my-4 @navArt" asp-action="Dashboard" asp-route-id="4">Art</a>
+            <a class="link-secondary text-decoration-none d-inline px-4 py-2 mx-2 my-4 @navEdu" asp-action="Dashboard" asp-route-id="5">Education</a>
+            <a class="link-secondary text-decoration-none d-inline px-4 py-2 mx-2 my-4 @navCareer" asp-action="Dashboard" asp-route-id="6">Career</a>
+            <a class="link-secondary text-decoration-none d-inline px-4 py-2 mx-2 my-4 @navPolitics" asp-action="Dashboard" asp-route-id="7">Politics</a>
+        </div>
+    </div>
+
     @if(Model.Questions.Count > 0)
     {
         foreach(var q in Model.Questions)
         {
-           <div class="card q-card mt-2 p-4">
+           <div class="card q-card mt-2 mb-3 p-4">
               <div class="card-body">
                 <h3>@q.QuestionStatement</h3>
                 <p class="my-2">Answers: @q.AnswerCount</p>

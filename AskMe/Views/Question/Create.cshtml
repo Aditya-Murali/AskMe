@@ -5,28 +5,30 @@
 }
 
 <div class="container">
-  <div class="row">
-    <div class="col">
-        <section>
+  <div class="row d-flex justify-content-center">
+    <div class="col-md-6">
+        <section class="login-box mt-2">
+            <h5 class="text-secondary">Dashboard <small class="text-danger"><i class="fa fa-chevron-right"></i></small> Ask a question</h5>
+            <a href="javascript:window.history.go(-1)" class="link-danger text-decoration-none py-2"><i class="fa fa-arrow-left"></i> Go Back</a>
                 <form method="post">
                     <div asp-validation-summary="All" class="text-danger"></div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label asp-for="Statement"></label>
-                        <input asp-for="Statement" class="form-control" placeholder="Enter First Name"/>
+                        <input asp-for="Statement" class="form-control rounded-0" placeholder="Question Statement"/>
                         <span asp-validation-for="Statement" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group mt-3">
                         <label asp-for="CategoryId"></label>
-                        <select asp-for="CategoryId" class="form-control" asp-items="@(new SelectList(Model.Categories,nameof(Category.CId),nameof(Category.Name)))">
+                        <select asp-for="CategoryId" class="form-control rounded-0" asp-items="@(new SelectList(Model.Categories,nameof(Category.CId),nameof(Category.Name)))">
                             <option disabled selected>-- Please Select --</option>
                         </select>
                         <span asp-validation-for="CategoryId" class="text-danger"></span>
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-red">Login</button>
+                    <div class="form-group mt-4">
+                        <button type="submit" class="btn btn-primary px-4 py-2 rounded-0">Ask Question</button>
                     </div>
                 </form>    
-        <section>
+        </section>
     </div>
   </div>
 </div>

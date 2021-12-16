@@ -5,7 +5,8 @@
 }
 
 <div class="container">
-    <a href="javascript:window.history.go(-1)" class="link-danger text-decoration-none py-2"><i class="fa fa-arrow-left"></i> Go Back</a>
+    <h5 class="text-secondary">Dashboard <small class="text-danger"><i class="fa fa-chevron-right"></i></small> My Questions</h5>
+    <a asp-action="dashboard" class="link-danger text-decoration-none py-2"><i class="fa fa-arrow-left"></i> Go Back</a>
 
     @if(Model.Questions.Count > 0)
     {

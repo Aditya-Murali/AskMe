@@ -3,5 +3,7 @@
     public class QuestionDashboardViewModel
     {
         public List<QuestionViewModel> Questions { get; set; }
+
+        public int? CategoryId { get; set; }
     }
 }
