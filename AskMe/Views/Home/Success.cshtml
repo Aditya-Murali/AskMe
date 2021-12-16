@@ -1,0 +1,10 @@
+@model AskMe.Models.ViewModels.AccountViewModels.SuccessViewModel
+
+@{
+    ViewData["Title"] = "Success!";
+}
+
+<div class="text-center">
+    <h1 class="text-success mt-5">Success!</h1>
+    <a asp-controller="@Model.Controller" asp-action="@Model.Action" class="text-primary text-decoration-none"><i class="fa fa-arrow-right"></i> Continue</a>
+</div>

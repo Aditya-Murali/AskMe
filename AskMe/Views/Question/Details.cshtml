@@ -1,0 +1,27 @@
+﻿@model AskMe.Models.ViewModels.QuestionViewModels.QuestionDetailsViewModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+    <h5 class="text-secondary">Dashboard <small class="text-danger"><i class="fa fa-chevron-right"></i></small> Details</h5><a href="javascript:window.history.go(-1)" class="link-danger text-decoration-none py-2 d-inline"><i class="fa fa-arrow-left"></i> Go Back</a>
+    <hr/>
+    <h1>@Model.QuestionStatement</h1>
+     <a asp-action="Status" asp-controller="Answer" asp-route-qid=@Model.QId class="link-primary text-decoration-none"><i class="fa fa-edit"></i> Add/Edit Answer</a>
+     <hr />
+    @if(Model.Ans.Count > 0)
+    {
+        foreach(var a in Model.Ans)
+        {
+           <div class="card q-card p-4">
+              <div class="card-body">
+                <p>@a.Statement</p>
+                <p class="mt-2"><b><span>Author: </span>@a.user.FirstName</b></p>
+              </div>
+            </div> 
+        }
+    }
+</div>
+
+
