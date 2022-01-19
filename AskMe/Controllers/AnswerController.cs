@@ -77,14 +77,11 @@ namespace AskMe.Controllers
                 {
                     var currentUserId = await GetCurrentUserId();
 
-                    var _user = _context.Users.Where(u => u.UserId == currentUserId).FirstOrDefault();
-                    var _question = _context.Questions.Where(q => q.QId == cavm.QuestionId).FirstOrDefault();
-
                     var answer = new Answer()
                     {
                         Statement = cavm.Statement,
-                        user = _user,
-                        question = _question
+                        UserId = currentUserId,
+                        QId = cavm.QuestionId
                     };
 
                     _context.Answers.Add(answer);

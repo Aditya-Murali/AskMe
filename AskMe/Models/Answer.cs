@@ -13,7 +13,11 @@ namespace AskMe.Models
         [ForeignKey("QId")]
         public virtual Question question { get; set; }
 
+        public int QId{get; set;}
+
         [ForeignKey("UserId")]
         public virtual User user { get; set; }
+
+        public string UserId{get; set;}
     }
 }

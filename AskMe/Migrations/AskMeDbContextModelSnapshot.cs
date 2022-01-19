@@ -45,7 +45,7 @@ namespace AskMe.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Answers");
+                    b.ToTable("Answers", (string)null);
                 });
 
             modelBuilder.Entity("AskMe.Models.Category", b =>
@@ -62,7 +62,7 @@ namespace AskMe.Migrations
 
                     b.HasKey("CId");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
 
                     b.HasData(
                         new
@@ -127,7 +127,7 @@ namespace AskMe.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Questions");
+                    b.ToTable("Questions", (string)null);
                 });
 
             modelBuilder.Entity("AskMe.Models.User", b =>
@@ -143,7 +143,7 @@ namespace AskMe.Migrations
 
                     b.HasKey("UserId");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("AskMe.Models.Answer", b =>

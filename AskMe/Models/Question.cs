@@ -13,7 +13,11 @@ namespace AskMe.Models
         [ForeignKey("UserId")]
         public virtual User user { get; set; }
 
+        public string UserId { get; set; }
+        
         [ForeignKey("CId")]
         public virtual Category category { get; set; }
+
+        public int CId{ get; set; }
     }
 }
